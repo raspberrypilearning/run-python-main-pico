@@ -1,59 +1,38 @@
-## Introduction
+## Automatically run a program using main.py
 
-Add project description here. What will learners be making? Broadly what skills will they be learning?
+- Use the Thonny IDE to write your programme. When you are finished you can use the **File** menu to save your code to your Raspberry Pi Pico device, using the **Save as...**.
 
-### What you will make
+![file menu in Thonny shown, with the Save As option highlighted](images/file_menu.png)
 
---- no-print ---
-Add instructions for interacting with the embedded content here.
+- Choose to save your code to your Raspberry Pi Pico.
 
-<div class="scratch-preview">
-  <iframe allowtransparency="true" width="485" height="402" src="https://scratch.mit.edu/projects/embed/160619869/?autostart=false" frameborder="0"></iframe>
-</div>
---- /no-print ---
+![option to choose to save on computer or on Pico.](images/save_to_pico.png)
 
---- print-only ---
-![Complete project](images/showcase_static.png)
---- /print-only ---
+- Call your file `main.py` to have it automatically run when your Pico is powered from an external power supply, not connected to your computer.
 
---- collapse ---
+![save menu option, with main.py chosen as a filename](images/main.png)
+
+- The example code below will blink the onboard LED.
+
+--- code ---
 ---
-title: What you will need
+language: python
+filename: main.py
+line_numbers: true
+line_number_start: 
+line_highlights: 
 ---
-### Hardware
+from machine import Pin, Timer
+led = Pin(25, Pin.OUT)
+timer = Timer()
 
-+ A computer or tablet capable of running Scratch 3
+def blink(timer):
+    led.toggle()
 
-### Software
+timer.init(freq=10, mode=Timer.PERIODIC, callback=blink)
+--- /code ---
 
-+ Scratch 3 (either [online](https://scratch.mit.edu/){:target="_blank"} or [offline](https://scratch.mit.edu/download){:target="_blank"})
-+ Python 3
-+ This project can be completed in a web browser using [trinket.io](https://trinket.io/)
+- If it is saved as `main.py` on the Raspberry Pi Pico, then the program will load when the device is powered from an external power supply, such as a battery.
 
-### Downloads
+![pico powered using 2 AA batteries and the onboard LED blinking rapidly](images/blinking.gif)
 
-+ Download the project [starter file](http://rpf.io/p/en/projectName-go){:target="_blank"} if working offline
-
---- /collapse ---
-
---- collapse ---
----
-title: What you will learn
----
-
-+ Learning objective 1
-+ Learning objective 2
-+ Learning objective 3
-
---- /collapse ---
-
---- collapse ---
----
-title: Additional information for educators
----
-
-You can download the completed project [here](http://rpf.io/p/en/projectName-get){:target="_blank"}.
-
-If you need to print this project, please use the [printer-friendly version](https://projects.raspberrypi.org/en/projects/projectName/print){:target="_blank"}.
-
---- /collapse ---
